@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import BaseWidget from './BaseWidget.tsx';
 import { WidgetProps } from '../../types/widget.ts';
-import styles from './ClockWidget.module.css';
+// Tailwind替换了CSS模块
 
 export default function ClockWidget(props: WidgetProps) {
   const [date, setDate] = useState(new Date());
@@ -35,9 +35,9 @@ export default function ClockWidget(props: WidgetProps) {
 
   return (
     <BaseWidget {...props}>
-      <div className={styles.clockWidget}>
-        <div className={styles.time}>{formatTime(date)}</div>
-        <div className={styles.date}>{formatDate(date)}</div>
+      <div className="flex flex-col items-center justify-center h-full text-center">
+        <div className="text-4xl font-bold mb-2 text-gray-800">{formatTime(date)}</div>
+        <div className="text-base text-gray-600">{formatDate(date)}</div>
       </div>
     </BaseWidget>
   );

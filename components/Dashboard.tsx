@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import { widgetRegistry } from '../lib/widgetRegistry.ts';
 import { WidgetRegistryItem, WidgetProps } from '../types/widget.ts';
-import styles from './Dashboard.module.css';
+// Tailwind替换了CSS模块
 
 export default function Dashboard() {
   const [widgets, setWidgets] = useState<WidgetRegistryItem[]>([]);
@@ -16,9 +16,9 @@ export default function Dashboard() {
   }, []);
 
   return (
-    <div className={styles.dashboard}>
-      <h1 className={styles.title}>Dashboard</h1>
-      <div className={styles.widgetsGrid}>
+    <div className="p-5 max-w-7xl mx-auto">
+      <h1 className="text-2xl mb-5 text-gray-800">Dashboard</h1>
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
         {widgets.map((widget) => {
           const WidgetComponent = widget.component;
           const widgetProps: WidgetProps = {
@@ -30,7 +30,7 @@ export default function Dashboard() {
           };
 
           return (
-            <div key={widget.id} className={styles.widgetContainer}>
+            <div key={widget.id} className="bg-white rounded-lg shadow-md overflow-hidden transition-all hover:translate-y-[-5px] hover:shadow-lg">
               <WidgetComponent {...widgetProps} />
             </div>
           );

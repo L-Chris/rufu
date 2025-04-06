@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import BaseWidget from './BaseWidget.tsx';
 import { WidgetProps } from '../../types/widget.ts';
-import styles from './WeatherWidget.module.css';
+// Tailwind替换了CSS模块
 
 interface WeatherData {
   location: string;
@@ -60,11 +60,11 @@ export default function WeatherWidget(props: WidgetProps) {
       onRefresh={loadWeatherData}
     >
       {weather && (
-        <div className={styles.weatherWidget}>
-          <div className={styles.icon}>{weather.icon}</div>
-          <div className={styles.temperature}>{weather.temperature}°C</div>
-          <div className={styles.condition}>{weather.condition}</div>
-          <div className={styles.location}>{weather.location}</div>
+        <div className="flex flex-col items-center justify-center h-full text-center">
+          <div className="text-5xl mb-2">{weather.icon}</div>
+          <div className="text-4xl font-bold mb-1 text-gray-800">{weather.temperature}°C</div>
+          <div className="text-base text-gray-600 mb-2">{weather.condition}</div>
+          <div className="text-sm text-gray-500">{weather.location}</div>
         </div>
       )}
     </BaseWidget>
