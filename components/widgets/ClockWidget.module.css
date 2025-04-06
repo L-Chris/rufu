@@ -1,0 +1,20 @@
+.clockWidget {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  text-align: center;
+}
+
+.time {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 8px;
+  color: #333;
+}
+
+.date {
+  font-size: 1rem;
+  color: #666;
+}

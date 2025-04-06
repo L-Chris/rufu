@@ -1,8 +1,9 @@
 import type { Metadata } from 'next';
+import './globals.css';
 
 export const metadata: Metadata = {
-  title: 'Next.js on Deno',
-  description: 'Deploy your Next.js application to Deno Deploy.',
+  title: 'Glance Dashboard - Next.js on Deno',
+  description: 'A dashboard with widgets similar to Glance, deployed on Deno.',
 };
 
 export default function RootLayout({
