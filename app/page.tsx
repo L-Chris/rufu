@@ -1,8 +1,8 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { registerAllWidgets } from '../lib/registerWidgets.ts';
-import Dashboard from '../components/Dashboard.tsx';
+import { registerAllWidgets } from '../lib/registerWidgets';
+import Dashboard from '../components/Dashboard';
 
 export default function Home() {
   const [widgetsRegistered, setWidgetsRegistered] = useState(false);

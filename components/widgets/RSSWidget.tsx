@@ -1,8 +1,8 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
-import BaseWidget from './BaseWidget.tsx';
-import { WidgetProps } from '../../types/widget.ts';
+import BaseWidget from './BaseWidget';
+import { WidgetProps } from '../../types/widget';
 
 // 定义RSS项目的接口
 interface RSSItem {

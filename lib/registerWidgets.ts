@@ -1,7 +1,7 @@
-import { widgetRegistry } from './widgetRegistry.ts';
-import { clockWidgetConfig } from '../components/widgets/ClockWidget.tsx';
-import { weatherWidgetConfig } from '../components/widgets/WeatherWidget.tsx';
-import { rssWidgetConfig } from '../components/widgets/RSSWidget.tsx';
+import { widgetRegistry } from './widgetRegistry';
+import { clockWidgetConfig } from '../components/widgets/ClockWidget';
+import { weatherWidgetConfig } from '../components/widgets/WeatherWidget';
+import { rssWidgetConfig } from '../components/widgets/RSSWidget';
 
 // 注册所有widgets
 export function registerAllWidgets() {

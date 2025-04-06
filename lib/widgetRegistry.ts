@@ -1,4 +1,4 @@
-import { WidgetConfig, WidgetRegistryItem } from '../types/widget.ts';
+import { WidgetConfig, WidgetRegistryItem } from '../types/widget';
 
 // Widget注册表
 class WidgetRegistry {

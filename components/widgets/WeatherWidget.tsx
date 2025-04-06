@@ -1,8 +1,8 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
-import BaseWidget from './BaseWidget.tsx';
-import { WidgetProps } from '../../types/widget.ts';
+import BaseWidget from './BaseWidget';
+import { WidgetProps } from '../../types/widget';
 // Tailwind替换了CSS模块
 
 interface WeatherData {

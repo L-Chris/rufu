@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useEffect, useState } from 'react';
-import { WidgetProps } from '../../types/widget.ts';
+import { WidgetProps } from '../../types/widget';
 // Tailwind替换了CSS模块
 
 interface BaseWidgetProps extends WidgetProps {
