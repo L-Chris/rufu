@@ -49,7 +49,7 @@ export default function RSSWidget(props: RSSWidgetProps) {
 
   // 默认RSS源
   const defaultSources: RSSSource[] = [
-    { url: 'https://rss.huxiu.com/', title: '虎嗅' }
+    { url: 'https://rsshub.app/hackernews', title: 'HackerNews' },
   ];
 
   // 合并默认源和用户配置的源
@@ -132,5 +132,5 @@ export const rssWidgetConfig = {
   component: RSSWidget,
   defaultWidth: 2,
   defaultHeight: 2,
-  defaultRefreshInterval: 300000, // 5分钟刷新一次
+  defaultRefreshInterval: 600000, // 5分钟刷新一次
 };

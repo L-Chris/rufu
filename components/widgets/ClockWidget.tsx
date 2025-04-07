@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import BaseWidget from './BaseWidget';
 import { WidgetProps } from '../../types/widget';
-// Tailwind替换了CSS模块
+
 
 export default function ClockWidget(props: WidgetProps) {
   const [date, setDate] = useState(new Date());

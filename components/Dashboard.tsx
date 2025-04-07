@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import { widgetRegistry } from '../lib/widgetRegistry';
 import { WidgetRegistryItem, WidgetProps } from '../types/widget';
-// Tailwind替换了CSS模块
+
 
 export default function Dashboard() {
   const [widgets, setWidgets] = useState<WidgetRegistryItem[]>([]);

@@ -10,5 +10,17 @@
       "public"
     ],
     "entrypoint": "jsr:@deno/nextjs-start/v15"
-  }
+  },
+  "compilerOptions": {
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
+    "strict": true,
+    "jsx": "preserve"
+  },
+  "unstable": [
+    "sloppy-imports"
+  ]
 }
