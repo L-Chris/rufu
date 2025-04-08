@@ -2,7 +2,7 @@
 
 ## Deoloy
 ```bash
-deployctl deploy --prod
+npm run build && deployctl deploy --prod
 ```
 
 ## Config

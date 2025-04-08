@@ -23,7 +23,10 @@ interface RSSSource {
 
 // 定义组件的属性，扩展自WidgetProps
 interface RSSWidgetProps extends WidgetProps {
-  sources?: RSSSource[];
+  instanceId: string;
+  config?: {
+    feeds: string[];
+  };
   maxItems?: number;
 }
 
@@ -42,19 +45,28 @@ const fetchRSSData = async (sources: RSSSource[]): Promise<RSSItem[]> => {
 };
 
 export default function RSSWidget(props: RSSWidgetProps) {
-  const { maxItems = 5, sources = [] } = props;
+  const { maxItems = 5 } = props;
   const [rssItems, setRssItems] = useState<RSSItem[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | undefined>();
   const [currentPage, setCurrentPage] = useState(1);
+  const [rssSources, setRssSources] = useState<RSSSource[]>([]);
 
-  // 默认RSS源
-  const defaultSources: RSSSource[] = [
-    { url: 'https://rsshub.app/hackernews?brief=200', title: 'HackerNews' },
-  ];
+  useEffect(() => {
+    // 从props中获取RSS源配置
+    if (props.config?.feeds) {
+      const sources = props.config.feeds
+        .filter(url => url.trim() !== '')
+        .map(url => ({
+          url: url + '?brief=200',
+          title: new URL(url).hostname
+        }));
+      setRssSources(sources.length > 0 ? sources : [
+        { url: 'https://rsshub.app/hackernews?brief=200', title: 'HackerNews' }
+      ]);
+    }
+  }, []);
 
-  // 合并默认源和用户配置的源
-  const rssSources = (sources.length > 0 ? sources : defaultSources).map(_ => ({ ..._, url: _.url + '?brief=200' }));
 
   const loadRSSData = async () => {
     setLoading(true);
@@ -74,7 +86,7 @@ export default function RSSWidget(props: RSSWidgetProps) {
 
   useEffect(() => {
     loadRSSData();
-  }, []);
+  }, [rssSources]);
 
   // 格式化日期
   const formatDate = (dateString?: string) => {

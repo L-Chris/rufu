@@ -28,10 +28,18 @@ const fetchWeatherData = async (): Promise<WeatherData> => {
   });
 };
 
-export default function WeatherWidget(props: WidgetProps) {
+interface WeatherWidgetProps extends WidgetProps {
+  config?: {
+    city: string;
+    unit: string;
+  };
+}
+
+export default function WeatherWidget(props: WeatherWidgetProps) {
   const [weather, setWeather] = useState<WeatherData | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | undefined>();
+  const config = props.config || { city: '', unit: 'celsius' };
 
   const loadWeatherData = async () => {
     setLoading(true);
@@ -50,7 +58,7 @@ export default function WeatherWidget(props: WidgetProps) {
 
   useEffect(() => {
     loadWeatherData();
-  }, []);
+  }, [props.config]);
 
   return (
     <BaseWidget
@@ -62,7 +70,9 @@ export default function WeatherWidget(props: WidgetProps) {
       {weather && (
         <div className="flex flex-col items-center justify-center h-full text-center">
           <div className="text-5xl mb-2">{weather.icon}</div>
-          <div className="text-4xl font-bold mb-1 text-gray-800">{weather.temperature}°C</div>
+          <div className="text-4xl font-bold mb-1 text-gray-800">
+            {weather.temperature}°{config.unit === 'celsius' ? 'C' : 'F'}
+          </div>
           <div className="text-base text-gray-600 mb-2">{weather.condition}</div>
           <div className="text-sm text-gray-500">{weather.location}</div>
         </div>
