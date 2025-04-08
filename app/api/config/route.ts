@@ -4,6 +4,7 @@ enum STORAGE_KEY {
 
 export async function GET() {
   try {
+    // @ts-ignore: Deno type
     const kv = await Deno.openKv();
     const config = await kv.get([STORAGE_KEY.CONFIG]);
     return Response.json(config || {
@@ -33,6 +34,7 @@ export async function GET() {
 
 export async function POST(request: Request) {
   try {
+    // @ts-ignore: Deno type
     const kv = await Deno.openKv();
     const config = await request.json();
     await kv.set([STORAGE_KEY.CONFIG], config);

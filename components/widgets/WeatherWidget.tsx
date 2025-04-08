@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import BaseWidget from './BaseWidget';
-import { WidgetProps } from '../../types/widget';
+import { WidgetProps, WidgetConfig } from '../../types/widget';
 
 
 interface WeatherData {
@@ -28,12 +28,12 @@ const fetchWeatherData = async (): Promise<WeatherData> => {
   });
 };
 
-interface WeatherWidgetProps extends WidgetProps {
-  config?: {
-    city: string;
-    unit: string;
-  };
+interface WeatherConfig {
+  city: string;
+  unit: string;
 }
+
+interface WeatherWidgetProps extends WidgetProps<WeatherConfig> {}
 
 export default function WeatherWidget(props: WeatherWidgetProps) {
   const [weather, setWeather] = useState<WeatherData | null>(null);
@@ -82,12 +82,12 @@ export default function WeatherWidget(props: WeatherWidgetProps) {
 }
 
 // 注册widget配置
-export const weatherWidgetConfig = {
-  id: 'weather',  // 确保id已定义
+export const weatherWidgetConfig: WidgetConfig<WeatherConfig> = {
+  id: 'weather',
   name: '天气',
-  description: '显示当前天气情况',
+  description: '显示天气信息',
   component: WeatherWidget,
-  defaultWidth: 1,
-  defaultHeight: 1,
+  defaultWidth: 300,
+  defaultHeight: 200,
   defaultRefreshInterval: 300000, // 5分钟刷新一次
 };

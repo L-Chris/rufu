@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import BaseWidget from './BaseWidget';
-import { WidgetProps } from '../../types/widget';
+import { WidgetProps, WidgetConfig } from '../../types/widget';
 
 // 定义RSS项目的接口
 interface RSSItem {
@@ -21,12 +21,13 @@ interface RSSSource {
   title: string;
 }
 
+// 定义RSS配置接口
+interface RSSConfig {
+  feeds: string[];
+}
+
 // 定义组件的属性，扩展自WidgetProps
-interface RSSWidgetProps extends WidgetProps {
-  instanceId: string;
-  config?: {
-    feeds: string[];
-  };
+interface RSSWidgetProps extends WidgetProps<RSSConfig> {
   maxItems?: number;
 }
 
@@ -176,12 +177,12 @@ export default function RSSWidget(props: RSSWidgetProps) {
 }
 
 // 注册widget配置
-export const rssWidgetConfig = {
+export const rssWidgetConfig: WidgetConfig<RSSConfig> = {
   id: 'rss',
-  name: 'RSS',
-  description: '显示多个RSS源的最新内容',
+  name: 'RSS阅读器',
+  description: '显示RSS订阅源的最新内容',
   component: RSSWidget,
-  defaultWidth: 2,
-  defaultHeight: 2,
-  defaultRefreshInterval: 600000, // 5分钟刷新一次
+  defaultWidth: 600,
+  defaultHeight: 400,
+  defaultRefreshInterval: 300000, // 5分钟刷新一次
 };
