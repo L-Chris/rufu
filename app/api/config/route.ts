@@ -7,7 +7,7 @@ export async function GET() {
     // @ts-ignore: Deno type
     const kv = await Deno.openKv();
     const config = await kv.get([STORAGE_KEY.CONFIG]);
-    return Response.json(config || {
+    return Response.json(config?.value || {
       widgets: [
         {
           widgetId: 'weather',
