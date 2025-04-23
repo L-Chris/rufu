@@ -24,6 +24,7 @@ interface RSSSource {
 // 定义RSS配置接口
 interface RSSConfig {
   feeds: string[];
+  title?: string;
 }
 
 // 定义组件的属性，扩展自WidgetProps
@@ -52,6 +53,7 @@ export default function RSSWidget(props: RSSWidgetProps) {
   const [error, setError] = useState<string | undefined>();
   const [currentPage, setCurrentPage] = useState(1);
   const [rssSources, setRssSources] = useState<RSSSource[]>([]);
+  const [autoTitle, setAutoTitle] = useState<string>('');
 
   useEffect(() => {
     // 从props中获取RSS源配置
@@ -72,11 +74,16 @@ export default function RSSWidget(props: RSSWidgetProps) {
   const loadRSSData = async () => {
     setLoading(true);
     setError(undefined);
-    
     try {
       const items = await fetchRSSData(rssSources);
       setRssItems(items);
       setCurrentPage(1); // 重置页码
+      // 自动提取channel的title（假设items有channelTitle字段或第一个item有channelTitle）
+      // if (items && items.length > 0 && (items[0] as any).channelTitle) {
+      //   setAutoTitle((items[0] as any).channelTitle);
+      // } else if (items && items.length > 0 && items[0].title) {
+      //   setAutoTitle(items[0].title);
+      // }
     } catch (err) {
       setError('无法加载RSS数据');
       console.error('Failed to fetch RSS data:', err);
@@ -86,6 +93,7 @@ export default function RSSWidget(props: RSSWidgetProps) {
   };
 
   useEffect(() => {
+    if (rssSources.length === 0) return;
     loadRSSData();
   }, [rssSources]);
 
@@ -125,6 +133,7 @@ export default function RSSWidget(props: RSSWidgetProps) {
       loading={loading}
       error={error}
       onRefresh={loadRSSData}
+      title={props.config?.title?.trim() ? props.config.title : (autoTitle || "RSS")}
     >
       <div className="flex flex-col h-full overflow-hidden">
         <ul className="divide-y divide-gray-200 overflow-y-auto flex-grow">
@@ -179,7 +188,7 @@ export default function RSSWidget(props: RSSWidgetProps) {
 // 注册widget配置
 export const rssWidgetConfig: WidgetConfig<RSSConfig> = {
   id: 'rss',
-  name: 'RSS阅读器',
+  name: 'RSS',
   description: '显示RSS订阅源的最新内容',
   component: RSSWidget,
   defaultWidth: 600,

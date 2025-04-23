@@ -75,7 +75,7 @@ export default function ConfigModal({ isOpen, onClose, onConfigChange }: ConfigM
       case 'weather':
         return { city: '', unit: 'celsius' };
       case 'rss':
-        return { feeds: [''] };
+        return { feeds: [''], title: '' };
       default:
         return {};
     }
@@ -157,6 +157,16 @@ export default function ConfigModal({ isOpen, onClose, onConfigChange }: ConfigM
                       )}
                       {widgetConfig.widgetId === 'rss' && (
                         <div className="space-y-2">
+                          <input
+                            type="text"
+                            placeholder="标题（可选，不填则自动获取）"
+                            className="w-full rounded-md border border-gray-300 px-3 py-2"
+                            value={widgetConfig.config.title || ''}
+                            onChange={(e) => updateWidgetConfig(widgetConfig.instanceId, {
+                              ...widgetConfig.config,
+                              title: e.target.value
+                            })}
+                          />
                           {widgetConfig.config.feeds.map((feed: string, index: number) => (
                             <input
                               key={index}
