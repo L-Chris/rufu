@@ -36,8 +36,3 @@ a {
     background-color: #1a1a1a;
   }
 }
-
-body .__Cici_translate_global_wrapper__ .__Cici_translate_clamp_unset__ {
-  -webkit-line-clamp: inherit !important; /* 覆盖 -webkit-line-clamp: unset !important */
-  max-height: inherit !important; /* 覆盖 max-height: unset !important */
-}
