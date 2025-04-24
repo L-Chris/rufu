@@ -54,7 +54,7 @@ export default function Dashboard() {
         onClose={() => setIsConfigOpen(false)}
         onConfigChange={handleConfigChange}
       />
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+      <div className="grid grid-cols-1 lg:grid-cols-2 max-lg:grid-cols-3 gap-5">
         {widgetConfigs.map((widgetConfig) => {
           const widget = widgets.find(w => w.id === widgetConfig.widgetId);
           if (!widget) return null;

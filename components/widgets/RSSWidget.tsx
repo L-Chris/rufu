@@ -147,7 +147,7 @@ export default function RSSWidget(props: RSSWidgetProps) {
               >
                 <h3 className="text-sm font-medium text-gray-800 mb-1 line-clamp-2">{item.title}</h3>
                 {item.contentSnippet && (
-                  <p className="text-xs text-gray-600 mb-1 line-clamp-2">{item.contentSnippet}</p>
+                  <p className="text-xs text-gray-600 mb-1 !line-clamp-2">{item.contentSnippet}</p>
                 )}
                 <div className="flex justify-between items-center text-xs text-gray-500">
                   {item.creator && <span>{item.creator}</span>}
