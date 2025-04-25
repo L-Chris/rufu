@@ -47,7 +47,6 @@ const fetchRSSData = async (sources: RSSSource[]): Promise<RSSItem[]> => {
 };
 
 export default function RSSWidget(props: RSSWidgetProps) {
-  const { maxItems = 5 } = props;
   const [rssItems, setRssItems] = useState<RSSItem[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | undefined>();
@@ -76,7 +75,6 @@ export default function RSSWidget(props: RSSWidgetProps) {
     try {
       const items = await fetchRSSData(rssSources);
       setRssItems(items);
-      setCurrentPage(1); // 重置页码
       // 自动提取channel的title（假设items有channelTitle字段或第一个item有channelTitle）
       // if (items && items.length > 0 && (items[0] as any).channelTitle) {
       //   setAutoTitle((items[0] as any).channelTitle);
