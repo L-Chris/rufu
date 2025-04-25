@@ -51,7 +51,6 @@ export default function RSSWidget(props: RSSWidgetProps) {
   const [rssItems, setRssItems] = useState<RSSItem[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | undefined>();
-  const [currentPage, setCurrentPage] = useState(1);
   const [rssSources, setRssSources] = useState<RSSSource[]>([]);
   const [autoTitle, setAutoTitle] = useState<string>('');
 
@@ -113,20 +112,6 @@ export default function RSSWidget(props: RSSWidgetProps) {
     }
   };
 
-  // 计算当前页的数据
-  const currentItems = rssItems.slice(
-    (currentPage - 1) * maxItems,
-    currentPage * maxItems
-  );
-
-  // 计算总页数
-  const totalPages = Math.ceil(rssItems.length / maxItems);
-
-  // 翻页处理函数
-  const handlePageChange = (newPage: number) => {
-    setCurrentPage(newPage);
-  };
-
   return (
     <BaseWidget
       {...props}
@@ -137,7 +122,7 @@ export default function RSSWidget(props: RSSWidgetProps) {
     >
       <div className="flex flex-col h-full overflow-hidden">
         <ul className="divide-y divide-gray-200 overflow-y-auto flex-grow">
-          {currentItems.map((item, index) => (
+          {rssItems.map((item, index) => (
             <li key={index} className="py-3 hover:bg-gray-50 transition-colors">
               <a 
                 href={item.link} 
@@ -157,29 +142,6 @@ export default function RSSWidget(props: RSSWidgetProps) {
             </li>
           ))}
         </ul>
-        {totalPages > 1 && (
-          <div className="flex justify-between items-center px-3 py-2 border-t border-gray-200">
-            <button
-              type="button"
-              onClick={() => handlePageChange(currentPage - 1)}
-              disabled={currentPage === 1}
-              className="px-2 py-1 text-sm text-gray-600 hover:text-gray-800 disabled:opacity-50 disabled:cursor-not-allowed"
-            >
-              上一页
-            </button>
-            <span className="text-sm text-gray-600">
-              {currentPage} / {totalPages}
-            </span>
-            <button
-              type="button"
-              onClick={() => handlePageChange(currentPage + 1)}
-              disabled={currentPage === totalPages}
-              className="px-2 py-1 text-sm text-gray-600 hover:text-gray-800 disabled:opacity-50 disabled:cursor-not-allowed"
-            >
-              下一页
-            </button>
-          </div>
-        )}
       </div>
     </BaseWidget>
   );
