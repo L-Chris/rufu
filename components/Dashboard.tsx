@@ -65,7 +65,6 @@ export default function Dashboard() {
             title: widget.name,
             width: widget.defaultWidth,
             height: widget.defaultHeight,
-            refreshInterval: widget.defaultRefreshInterval,
             config: widgetConfig.config
           };
 

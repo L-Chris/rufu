@@ -153,5 +153,5 @@ export const rssWidgetConfig: WidgetConfig<RSSConfig> = {
   component: RSSWidget,
   defaultWidth: 600,
   defaultHeight: 400,
-  defaultRefreshInterval: 300000, // 5分钟刷新一次
+  // 删除 defaultRefreshInterval 字段
 };

@@ -16,21 +16,11 @@ export default function BaseWidget({
   children,
   loading = false,
   error,
-  refreshInterval,
   onRefresh,
 }: BaseWidgetProps) {
   const [isRefreshing, setIsRefreshing] = useState(false);
 
-  // 处理自动刷新
-  useEffect(() => {
-    if (!refreshInterval || !onRefresh) return;
-
-    const intervalId = setInterval(() => {
-      onRefresh();
-    }, refreshInterval);
-
-    return () => clearInterval(intervalId);
-  }, [refreshInterval, onRefresh]);
+  // 移除自动刷新逻辑
 
   // 手动刷新
   const handleRefresh = async () => {

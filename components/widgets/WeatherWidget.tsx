@@ -88,6 +88,5 @@ export const weatherWidgetConfig: WidgetConfig<WeatherConfig> = {
   description: '显示天气信息',
   component: WeatherWidget,
   defaultWidth: 300,
-  defaultHeight: 200,
-  defaultRefreshInterval: 300000, // 5分钟刷新一次
+  defaultHeight: 200
 };

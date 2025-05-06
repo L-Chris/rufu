@@ -50,6 +50,5 @@ export const clockWidgetConfig = {
   description: '显示当前时间和日期',
   component: ClockWidget,
   defaultWidth: 1,
-  defaultHeight: 1,
-  defaultRefreshInterval: 1000,
+  defaultHeight: 1
 };
